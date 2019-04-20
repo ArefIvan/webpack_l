@@ -1,7 +1,16 @@
 .title{
-    color: aqua;
+    color:royalblue ;
+}
+h1 {
+  text-align: right ;
 }
 body {
   background-color: bisque;
+}
+body h1 {
+  font-size: 40px;
+}
+.wrapper {
+  display: flex;
 }
 

@@ -33,9 +33,14 @@ let conf = {
 					  options:{sourceMap:true}
 				},
 				{
+					loader:"postcss-loader",
+					options:{sourseMap:true,config:{path:'\src\config\postcss.config.js'}}
+				},
+				{
 					loader:"less-loader",
 					options:{sourseMap:true}
-				}
+				},
+
 			],   	  	
 		 },
 
