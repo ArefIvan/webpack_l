@@ -1,3 +1,7 @@
-console.log('123qq444');
-console.log('22');
-import  './style.css'; 
+let add = (a,b)=>a+b;
+
+console.log(add(45,4445));
+
+
+import "./css/style.css"
+import "./less/style.less"

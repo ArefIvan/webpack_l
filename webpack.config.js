@@ -1,34 +1,59 @@
-let path = require('path');
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 let conf = {
-	 entry: './src/index.js',
+	 entry: {
+		app: './src/index.js'
+		}
+	 
+	 ,
 	 output: {
 	 	path: path.resolve(__dirname,'./dist'),
-	 	filename: 'main.js',
-	 	publicPath: 'dist/'
+	 	filename: '[name].js',
+	 	publicPath: '/dist'
 	 },
 	 devServer: {
-	 	contentBase:path.join(__dirname,'dist'),
+	 	
 	 	overlay:true
-	 },
+	 }, 
 	 module:{
 	 	rules:[
 	 	 {
 		 	test: /\.m?js$/,
-	 		exclude: /node_modules/,
-	 		use: {
+	 		exclude: '/node_modules/',		
 	   		 	loader: 'babel-loader',
-	   	 		options: {
-	      		presets: ['@babel/preset-env']
-	       		 }
-	      	}
-    	 },
+		 },
+		 {
+			test:/\.less$/,
+			use:[
+				'style-loader',
+			  	MiniCssExtractPlugin.loader,
+			  	{
+					  loader:'css-loader',
+					  options:{sourceMap:true}
+				},
+				{
+					loader:"less-loader",
+					options:{sourseMap:true}
+				}
+			],   	  	
+		 },
+
     	  {
     	  	test:/\.css$/,
-    	  	use:['style-loader','css-loader'],   	  	
-    	  }
+    	  	use:[
+				MiniCssExtractPlugin.loader,
+				'css-loader'
+			  ],   	  	
+    	   }
 
 	 	]
-	 }
+	 },
+	 plugins:[
+		 new MiniCssExtractPlugin({
+			 filename:"[name].css"
+		 })
+	 ]
 };
 
 
